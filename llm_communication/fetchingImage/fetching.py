@@ -1,6 +1,4 @@
-# This is a test file to test the fetchingInfo.
-
-
+import llm_communication
 import requests
 from PIL import Image
 from io import BytesIO
@@ -8,16 +6,12 @@ from io import BytesIO
 # Constants for APIs
 UNSPLASH_API_KEY = ''
 
-def arrayInput(input_string):
+def array_input(input_string):
     # Remove brackets and split by commas
     items = input_string.strip("[]").split(",")
     # Clean each item and return as a list
     cleaned_items = [item.strip().strip("*").strip() for item in items]
     return cleaned_items
-
-
-# Example usage
-
 
 
 def fetch_images_from_unsplash(qurey):
@@ -37,8 +31,8 @@ def display_images(image_urls, query):
         img.save(f'images/{query}_image.jpg')
     
 # Example usage
-input_string = "[*kinkakuji*]"
+input_string = get_attractions()
 
-for query in arrayInput(input_string):
+for query in array_input(input_string):
     image_urls = fetch_images_from_unsplash(query)
     display_images(image_urls, query)
