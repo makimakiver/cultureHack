@@ -3,51 +3,36 @@ import 'package:flutter_earth_globe/flutter_earth_globe.dart';
 import 'package:flutter_earth_globe/flutter_earth_globe_controller.dart';
 import 'package:flutter_earth_globe/globe_coordinates.dart';
 
-class Globe extends StatefulWidget {
 
-  Globe({super.key});
 
-  @override
-  State<Globe> createState() => _GlobeState();
-}
+class Globe extends StatelessWidget {
+late FlutterEarthGlobeController _controller;
 
-class _GlobeState extends State<Globe> {
-  late FlutterEarthGlobeController controller;
-
-  GlobeCoordinates? coordinates;
-
-  @override
-  void initState(){
-
-    controller = FlutterEarthGlobeController(
+@override
+initState() {
+  _controller = FlutterEarthGlobeController(
       rotationSpeed: 0.05,
       isBackgroundFollowingSphereRotation: true,
-      background: Image.asset('assets/2k_stars.jpg').image,
-      surface: Image.asset('assets/2k_earth-day,jpg').image,
-    );
+    background: AssetImage("assets/night.jpg"),
+      surface: NetworkImage("assets/world_map.gif")
+  );
+}
 
-    controller.addListener((){
-      setState(() {
-        // make the listener add the coodinates
-      });
-    } as VoidCallback);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+@override
+Widget build(BuildContext context) {
+  initState();
+  return MaterialApp(
+    home: Scaffold(
       appBar: AppBar(
-        title: Text('globe'),
+        title: Text('Flutter Global Earth'),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: FlutterEarthGlobe(radius: 120, controller: controller),
-            ),
-          ],
-        ),
-      )
-    );
-  }
+          child: FlutterEarthGlobe(
+            controller: _controller,
+            radius: 120,
+          )
+      ),
+    ),
+  );
+}
 }
