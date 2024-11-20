@@ -3,6 +3,7 @@ import 'package:flutter_earth_globe/flutter_earth_globe.dart';
 import 'package:flutter_earth_globe/flutter_earth_globe_controller.dart';
 import 'package:flutter_earth_globe/globe_coordinates.dart';
 import 'package:flutter_earth_globe/point.dart';
+import 'package:hackathon/models/coodinate.dart';
 
 
 
@@ -32,16 +33,48 @@ Widget build(BuildContext context) {
     Point(
         id: '1',
         isLabelVisible: true,
-        coordinates: const GlobeCoordinates(5.6895, 130.6917),
+        coordinates: const GlobeCoordinates(5.6895, 130.6917), // 35.6764° N, 139.6500° E
         style: const PointStyle(color: Colors.blue),
 
         onTap: (){
-          double longitude = 5.6895;
-          print(123);
+          Coordinate cord = Coordinate(5.6895, 130.6917);
+          print(cord.getLatitude());
+          print(cord.getLongitude());
         },
-        label: 'Tokyo'),
+        label: 'region1'),
+
     Point(
-        id: '4',
+        id: '2',
+        isLabelVisible: true,
+        coordinates: const GlobeCoordinates(43.0618 - 30, 141.3545 - 9), // 43.0618° N, 141.3545° E - 30, - 9
+        style: const PointStyle(color: Colors.blue),
+
+        onTap: (){
+          Coordinate cord = Coordinate(43.0618 - 30, 141.3545 - 9);
+          print(cord.getLatitude());
+          print(cord.getLongitude());
+        },
+        label: 'region2'),
+
+    Point(
+        id: '3',
+        isLabelVisible: true,
+        coordinates: const GlobeCoordinates(32.7503 - 30, 129.8779 - 9), // 32.7503° N, 129.8779
+        style: const PointStyle(color: Colors.blue),
+
+        onTap: (){
+          Coordinate cord = Coordinate(32.7503 - 30, 129.8779 - 9);
+          print(cord.getLatitude());
+          print(cord.getLongitude());
+        },
+        label: 'region3'),
+
+
+
+
+
+    Point(
+        id: '40',
         isLabelVisible: true,
         onTap: () {
           Future.delayed(Duration.zero, () {
